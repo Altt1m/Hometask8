@@ -10,7 +10,7 @@
             string answer;
             string[] words = { "аварія", "бандит", "галузь", "дозвіл" };
 
-            do
+            do // Answer checking
             {
                 Console.Clear();
                 Console.Write("Давайте пограємо в гру в слова? <y/n> ");
@@ -18,7 +18,7 @@
 
             } while (answer != "y" && answer != "n");
 
-            do
+            do // Main game cycle
             {
                 if (answer == "n")
                 {
@@ -37,7 +37,7 @@
                     string wrongGuesses = "";
                     int tries = 6;
 
-                    while (tries > 0 && guessedWord.Contains("_"))
+                    while (tries > 0 && guessedWord.Contains("_")) // In-game cycle
                     {
                         Console.WriteLine($"\nВаше слово: {guessedWord}");
                         Console.WriteLine($"Неправильні варіанти: {wrongGuesses}");
@@ -45,7 +45,7 @@
                         Console.Write("Вгадайте букву: ");
                         string letter = Console.ReadLine();
 
-                        if (letter.Length == 1)
+                        if (letter.Length == 1) // Letter checking
                         {
                             if (secretWord.Contains(letter))
                             {
@@ -69,28 +69,28 @@
                         }
                     }
 
-                    if (!guessedWord.Contains("_"))
+                    if (!guessedWord.Contains("_")) // Word guessed
                     {
                         Console.WriteLine($"Вітаю! Ви вгадали слово: {guessedWord}");
                     }
-                    else
+                    else // Word !guessed ;)
                     {
                         Console.WriteLine($"На жаль, ви не вгадали слово. Таємним словом було: {secretWord}");
                     }
 
-                    do
+                    do // Answer checking
                     {
                         Console.Write("\nДавайте грати ще? <y/n> ");
                         answer = Console.ReadLine();
                     }
                     while (answer != "y" && answer != "n");
 
-                    if (answer == "y")
+                    if (answer == "y") // Game repeat
                     {
                         Console.Clear();
                         continue;
                     }
-                    else if (answer == "n")
+                    else if (answer == "n") // Game quit
                     {
                         Console.WriteLine("Успіхів!");
                         break;
@@ -104,8 +104,7 @@
 
 
 
-
-
+        // Still Main() function
         }
     }
 }
