@@ -9,7 +9,6 @@
 
             string answer;
             string[] words = { "аварія", "бандит", "галузь", "дозвіл" };
-            int tries = 6;
 
             do
             {
@@ -17,6 +16,10 @@
                 Console.Write("Давайте пограємо в гру в слова? <y/n> ");
                 answer = Console.ReadLine();
 
+            } while (answer != "y" && answer != "n");
+
+            do
+            {
                 if (answer == "n")
                 {
                     Console.WriteLine("Зрозумів. На все добре!");
@@ -32,6 +35,7 @@
                     string secretWord = words[new Random().Next(words.Length)];
                     string guessedWord = new string('_', secretWord.Length);
                     string wrongGuesses = "";
+                    int tries = 6;
 
                     while (tries > 0 && guessedWord.Contains("_"))
                     {
@@ -45,6 +49,7 @@
                         {
                             if (secretWord.Contains(letter))
                             {
+                                Console.Clear();
                                 Console.WriteLine("Правильно!");
                                 for (int i = 0; i < secretWord.Length; i++)
                                 {
@@ -52,10 +57,11 @@
                                     {
                                         guessedWord = guessedWord.Remove(i, 1).Insert(i, letter);
                                     }
-                                }
+                                }  
                             }
                             else
                             {
+                                Console.Clear();
                                 Console.WriteLine("Неправильно!");
                                 tries--;
                                 wrongGuesses += letter + " ";
@@ -65,25 +71,41 @@
 
                     if (!guessedWord.Contains("_"))
                     {
-                        Console.WriteLine($"Вітаємо! Ви вгадали таємне слово: {guessedWord}");
+                        Console.WriteLine($"Вітаю! Ви вгадали слово: {guessedWord}");
                     }
                     else
                     {
                         Console.WriteLine($"На жаль, ви не вгадали слово. Таємним словом було: {secretWord}");
                     }
 
+                    do
+                    {
+                        Console.Write("\nДавайте грати ще? <y/n> ");
+                        answer = Console.ReadLine();
+                    }
+                    while (answer != "y" && answer != "n");
 
-                    break;
+                    if (answer == "y")
+                    {
+                        Console.Clear();
+                        continue;
+                    }
+                    else if (answer == "n")
+                    {
+                        Console.WriteLine("Успіхів!");
+                        break;
+                    }
+
+
                 }
-
 
 
             } while (true);
 
-            
 
 
 
-        }
+
+            }
     }
 }
